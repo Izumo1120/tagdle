@@ -4,3 +4,7 @@ python-dotenv
 requests
 sqlalchemy
 mysqlclient
+mysql-connector-python
+pydantic
+datetime
+typing
