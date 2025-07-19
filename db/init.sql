@@ -54,10 +54,27 @@ CREATE TABLE Histories (
     FOREIGN KEY (user_id) REFERENCES Users(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO Categories (name) VALUES ('電子機器'), ('書籍');
-INSERT INTO Images (image_name) VALUES (NULL), (NULL);  -- ダミーなのでNULLでも可
-INSERT INTO Locations (name) VALUES ('図書館'), ('教室A');
+-- Users table
+INSERT INTO Users (name, student_id, email, password) VALUES
+('山田 太郎', 'S12345', 'yamada@example.com', 'pass123'),
+('佐藤 花子', 'S23456', 'sato@example.com', 'pass456');
 
+-- Categories table
+INSERT INTO Categories (name) VALUES
+('電子機器'),
+('書籍');
+
+-- Images table (ダミーのためNULL)
+INSERT INTO Images (image_name) VALUES
+(NULL),
+(NULL);
+
+-- Locations table
+INSERT INTO Locations (name) VALUES
+('図書館'),
+('教室A');
+
+-- Items table
 INSERT INTO Items (
     name,
     category_id,
@@ -71,5 +88,9 @@ INSERT INTO Items (
 ('ノートパソコン', 1, 'ABC123', 1, 1, TRUE, '/qr/abc123.png', '2025-07-01'),
 ('プログラミング入門書', 2, 'DEF456', 2, 2, FALSE, '/qr/def456.png', '2025-07-02');
 
-
- 
+-- Histories table
+-- item_id = 1 (ノートパソコン), item_id = 2 (プログラミング入門書)
+-- user_id = 1 (山田), user_id = 2 (佐藤)
+INSERT INTO Histories (item_id, user_id, borrow_date, return_date) VALUES
+(1, 1, '2025-07-03', NULL),
+(2, 2, '2025-07-04', '2025-07-10');
