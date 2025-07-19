@@ -1,3 +1,4 @@
+SET NAMES 'utf8mb4';
 USE sample_db;
 
 -- Users table
@@ -99,3 +100,4 @@ INSERT INTO Histories (item_id, user_id, borrow_date, return_date) VALUES
 (1, 1, '2025-07-03', NULL),
 (2, 2, '2025-07-04', '2025-07-10'),
 (3, 3, '2025-07-05', NULL);
+

@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import sys
 sys.path.append('../')
 from routes.items_endpoint import items_endpoint
+
+from routes.return_endpoint import return_endpoint
+# from routes.auth_endpoint import auth_endpoint
 from routes.borrow_endpoint import borrow_endpoint
 from routes.qr_endpoint import qr_endpoint
 
@@ -20,6 +23,9 @@ app.add_middleware(
 )
 
 app.include_router(items_endpoint, tags=["items"])
+
+# app.include_router(auth_endpoint, tags=["auth"])
+app.include_router(return_endpoint)
 app.include_router(borrow_endpoint, tags=["borrow"])
 app.include_router(qr_endpoint, tags=["qr"])
 

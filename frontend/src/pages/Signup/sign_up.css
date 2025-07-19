@@ -1,0 +1,187 @@
+/* ======= リセット & ベース設定 ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* ======= 背景グラデーションアニメーション ======= */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 上詰めで配置 */
+  padding-top: 50px;       /* ヘッダーの高さ分スペース確保 */
+  padding-bottom: 30px;     /* モバイルで下が切れないように */
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  background: linear-gradient(135deg,
+    #87CEEB 0%,
+    #4FC3F7 25%,
+    #29B6F6 50%,
+    #0288D1 75%,
+    #01579B 100%
+  );
+  background-size: 400% 400%;
+  animation: skyGradient 12s ease infinite;
+  position: relative;
+}
+
+@keyframes skyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ======= 雲の装飾 ======= */
+.signup-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  animation: cloudFloat 20s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ======= フォーム本体 ======= */
+.signup-form {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow:
+    0 25px 50px rgba(41, 182, 246, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 40vw;
+  max-width: 3600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  z-index: 10;
+  border: 2px solid rgba(79, 195, 247, 0.3);
+}
+
+.signup-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #0277BD;
+  text-shadow: 0 2px 4px rgba(2, 119, 189, 0.2);
+  font-weight: 650;
+  margin-bottom: 0.5rem;
+}
+
+/* ======= ラベルと入力欄 ======= */
+.signup-form label {
+  font-weight: 700;
+  color: #0277BD;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 2px solid #B3E5FC;
+  background: #FAFFFE;
+  font-size: 0.9rem;
+  color: #0277BD;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border: 2px solid #29B6F6;
+  box-shadow:
+    0 0 12px rgba(41, 182, 246, 0.4),
+    inset 0 1px 2px rgba(41, 182, 246, 0.1);
+  transform: translateY(-1px);
+  background: #ffffff;
+}
+
+.signup-form input::placeholder {
+  color: #4FC3F7;
+  font-weight: 400;
+}
+
+/* ======= 登録ボタン ======= */
+.signup-button {
+  padding: 0.6rem 1rem;
+  margin-top: 1rem;
+  background: #29B6F6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow:
+    0 6px 16px rgba(41, 182, 246, 0.4),
+    0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signup-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.signup-button:hover {
+  background: #0288D1;
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(41, 182, 246, 0.6),
+    0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.signup-button:hover::before {
+  left: 100%;
+}
+
+.signup-button:active {
+  transform: translateY(0);
+}
+
+/* ======= モバイル対応 ======= */
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 1.2rem;
+    max-width: 95%;
+  }
+
+  .signup-form h2 {
+    font-size: 1.6rem;
+  }
+
+  .signup-button {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+}
