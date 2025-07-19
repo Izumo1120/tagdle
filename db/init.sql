@@ -55,10 +55,27 @@ CREATE TABLE Histories (
     FOREIGN KEY (user_id) REFERENCES Users(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO Categories (name) VALUES ('電子機器'), ('書籍');
-INSERT INTO Images (image_name) VALUES (NULL), (NULL);  -- ダミーなのでNULLでも可
-INSERT INTO Locations (name) VALUES ('図書館'), ('教室A');
+-- Users table
+INSERT INTO Users (name, student_id, email, password) VALUES
+('山田 太郎', 'S12345', 'yamada@example.com', 'pass123'),
+('佐藤 花子', 'S23456', 'sato@example.com', 'pass456');
 
+-- Categories table
+INSERT INTO Categories (name) VALUES
+('電子機器'),
+('書籍');
+
+-- Images table (ダミーのためNULL)
+INSERT INTO Images (image_name) VALUES
+(NULL),
+(NULL);
+
+-- Locations table
+INSERT INTO Locations (name) VALUES
+('図書館'),
+('教室A');
+
+-- Items table
 INSERT INTO Items (
     name,
     category_id,
