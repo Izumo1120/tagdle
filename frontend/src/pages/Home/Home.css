@@ -1,101 +1,79 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Home.css */
+ 
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  font-family: sans-serif;
 }
-
-html, body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  height: 100%;
-}
-
-.home-container {
-  padding: 2rem;
-  margin-top: 80px;  /* ヘッダーの高さと合わせて */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* ← これで中身が中央揃えに */
-}
-
-.dashboard-title {
-  font-size: 2.5rem;
+ 
+.title {
+  font-size: 2rem;
   font-weight: bold;
-  color: #333;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
   text-align: center;
-  padding: 1rem 0;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-  margin-left: 10rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }
-
-.card-grid {
+ 
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto; /* グリッド自体を中央に */
-   margin-left: 5rem; /* ← ここを調整することで右に寄せられる */
+  max-width: 2000px;
+  margin: 0 auto;
 }
-
-.item-card {
+ 
+.card {
   background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  text-align: center;
 }
-
-.item-card:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+ 
+.card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
-
-.item-image {
+ 
+.card img {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   margin-bottom: 1rem;
 }
-
-.item-name {
-  font-size: 1.25rem;
+ 
+.card-title {
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #444;
+  color: #374151;
 }
-
-.item-id {
-  font-size: 0.9rem;
-  color: #777;
-  margin: 0.25rem 0 0.75rem;
+ 
+.card-id {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
 }
-
-.item-status {
+ 
+.status {
   display: inline-block;
   padding: 0.3rem 0.8rem;
   font-size: 0.85rem;
   border-radius: 9999px;
   font-weight: bold;
 }
-
-.使用中 {
+ 
+.status-yellow {
   background-color: #fff3cd;
   color: #856404;
 }
-
-.空き {
+ 
+.status-green {
   background-color: #d4edda;
   color: #155724;
 }
-
-.故障中 {
+ 
+.status-red {
   background-color: #f8d7da;
   color: #721c24;
 }

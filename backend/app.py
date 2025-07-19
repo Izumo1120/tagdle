@@ -3,8 +3,8 @@ import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 import sys
 sys.path.append('../')
-# from routes.users_endpoint import users_endpoint
-# from routes.auth_endpoint import auth_endpoint
+from routes.items_endpoint import items_endpoint
+from routes.borrow_endpoint import borrow_endpoint
 
 app = FastAPI(
     title="tagdle Backend",
@@ -18,8 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.include_router(users_endpoint, tags=["users"])
-# app.include_router(auth_endpoint, tags=["auth"])
+app.include_router(items_endpoint, tags=["items"])
+app.include_router(borrow_endpoint, tags=["borrow"])
 
 @app.get("/")
 def root():    

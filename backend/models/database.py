@@ -7,7 +7,9 @@ def get_db_connection():
             host='db',
             user='user',
             password='password',
-            database='sample_db'
+            database='sample_db',
+            charset="utf8mb4",
+            # use_unicode=True
         )
         return connection
     except mysql.connector.Error as err:

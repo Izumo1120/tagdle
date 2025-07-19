@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import QRModal from './components/QRmodal/QRmodal';
+
 import Signin from './pages/Signin/sign_in';
 import Generate from './pages/Generate/generate';
 import SignUp from './pages/Signup/sign_up';
+
+
 import Home from './pages/Home/Home';
 
 import './App.css';
