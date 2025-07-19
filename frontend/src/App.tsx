@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import QRModal from './components/QRmodal/QRmodal';
-
-import SignUp from './pages/sign_up';
-import Home from './pages/Home';
+import Signin from './pages/Signin/sign_in';
+import Generate from './pages/Generate/generate';
+import SignUp from './pages/Signup/sign_up';
+import Home from './pages/Home/Home';
 
 import './App.css';
 
@@ -20,13 +21,16 @@ const Layout = () => {
 
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<SignUp />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/generate" element={<Generate />} />
         </Routes>
       </main>
 
-      {/* SignUp 以外で Footer を表示 */}
-      {location.pathname !== '/' && (
+      {/* SignUpもしくはSignin以外で Footer を表示 */}
+      {!['/signup', '/signin'].includes(location.pathname) && (
         <Footer onOpenQR={() => setShowQR(true)} />
       )}
 
