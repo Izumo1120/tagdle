@@ -57,22 +57,26 @@ CREATE TABLE Histories (
 -- Users table
 INSERT INTO Users (name, student_id, email, password) VALUES
 ('山田 太郎', 'S12345', 'yamada@example.com', 'pass123'),
-('佐藤 花子', 'S23456', 'sato@example.com', 'pass456');
+('佐藤 花子', 'S23456', 'sato@example.com', 'pass456'),
+('高橋 一郎', 'S34567', 'takahashi@example.com', 'pass789');
 
 -- Categories table
 INSERT INTO Categories (name) VALUES
 ('電子機器'),
-('書籍');
+('書籍'),
+('家具');
 
 -- Images table (ダミーのためNULL)
 INSERT INTO Images (image_name) VALUES
+(NULL),
 (NULL),
 (NULL);
 
 -- Locations table
 INSERT INTO Locations (name) VALUES
 ('図書館'),
-('教室A');
+('教室A'),
+('倉庫B');
 
 -- Items table
 INSERT INTO Items (
@@ -86,11 +90,12 @@ INSERT INTO Items (
     created_at
 ) VALUES
 ('ノートパソコン', 1, 'ABC123', 1, 1, TRUE, '/qr/abc123.png', '2025-07-01'),
-('プログラミング入門書', 2, 'DEF456', 2, 2, FALSE, '/qr/def456.png', '2025-07-02');
+('プログラミング入門書', 2, 'DEF456', 2, 2, FALSE, '/qr/def456.png', '2025-07-02'),
+('椅子', 3, 'GHI789', 3, 3, TRUE, '/qr/ghi789.png', '2025-07-03');
 
 -- Histories table
--- item_id = 1 (ノートパソコン), item_id = 2 (プログラミング入門書)
--- user_id = 1 (山田), user_id = 2 (佐藤)
+-- item_id = 1〜3, user_id = 1〜3
 INSERT INTO Histories (item_id, user_id, borrow_date, return_date) VALUES
 (1, 1, '2025-07-03', NULL),
-(2, 2, '2025-07-04', '2025-07-10');
+(2, 2, '2025-07-04', '2025-07-10'),
+(3, 3, '2025-07-05', NULL);
