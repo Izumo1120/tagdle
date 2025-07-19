@@ -1,3 +1,4 @@
+SET NAMES 'utf8mb4';
 USE sample_db;
 
 -- Users table
@@ -88,9 +89,14 @@ INSERT INTO Items (
 ('ノートパソコン', 1, 'ABC123', 1, 1, TRUE, '/qr/abc123.png', '2025-07-01'),
 ('プログラミング入門書', 2, 'DEF456', 2, 2, FALSE, '/qr/def456.png', '2025-07-02');
 
--- Histories table
--- item_id = 1 (ノートパソコン), item_id = 2 (プログラミング入門書)
--- user_id = 1 (山田), user_id = 2 (佐藤)
+INSERT INTO Users (name, student_id, email, password) VALUES
+('佐藤 次郎', '22001', 'jiro.sato@example.com', 'hashed_password_abc'),
+('鈴木 三郎', '22002', 'saburo.suzuki@example.com', 'hashed_password_def'),
+('高橋 四郎', '22003', 'shiro.takahashi@example.com', 'hashed_password_ghi');
+
 INSERT INTO Histories (item_id, user_id, borrow_date, return_date) VALUES
-(1, 1, '2025-07-03', NULL),
-(2, 2, '2025-07-04', '2025-07-10');
+-- ID=1のノートパソコン: 過去に貸し出され、返却済み (status=TRUEと一致)
+(1, 1, '2025-07-10', '2025-07-15'),
+
+-- ID=2のプログラミング入門書: 現在貸出中 (status=FALSEと一致)
+(2, 2, '2025-07-18', NULL);
