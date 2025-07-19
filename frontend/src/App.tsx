@@ -6,7 +6,7 @@ import Footer from './components/Footer/Footer';
 import QRModal from './components/QRmodal/QRmodal';
 
 import SignUp from './pages/sign_up';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 
 import './App.css';
 
