@@ -1,11 +1,13 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
+from typing import List
 from datetime import date
 import mysql.connector as mydb
 from mysql.connector import Error
 
-from models.databese import get_db_connection
+from models.database import get_db_connection
 
 class ItemCreate(BaseModel):
     name: str
@@ -16,16 +18,29 @@ class ItemCreate(BaseModel):
     status: bool
     created_at: date
 
+class ItemResponse(BaseModel):
+    id: int
+    name: str
+    category_id: int
+    identifier: str
+    image_id: int
+    location_id: int
+    status: bool
+    qrpath: str
+    created_at: date
+
 items_endpoint = APIRouter()
 
-@items_endpoint.get("/items", tags=["items"])
+@items_endpoint.get("/items",response_model=List[ItemResponse], tags=["items"])
 def get_items():
     try:
         connection = get_db_connection()
-        cursor = connection.cursor()
+        cursor = connection.cursor(dictionary=True)
         cursor.execute("SELECT * FROM Items")
         items = cursor.fetchall()
-        return items
+        json_items = jsonable_encoder(items)
+        return JSONResponse(content=json_items, media_type="application/json; charset=utf-8")
+        # return items
     except Error as e:
         return {"error": str(e)}
     finally:
