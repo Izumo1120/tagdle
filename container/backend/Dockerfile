@@ -5,6 +5,6 @@ WORKDIR /usr/src/backend
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# COPY . .
+COPY ./backend .
 
-# CMD [ "python", "./your-daemon-or-script.py" ]
+CMD ["python", "app.py"]
