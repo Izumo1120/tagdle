@@ -1,12 +1,12 @@
 /* Home.css */
-
+ 
 .container {
   min-height: 100vh;
   background-color: #f9fafb;
   padding: 1.5rem;
   font-family: sans-serif;
 }
-
+ 
 .title {
   font-size: 2rem;
   font-weight: bold;
@@ -14,7 +14,7 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
-
+ 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -22,7 +22,7 @@
   max-width: 2000px;
   margin: 0 auto;
 }
-
+ 
 .card {
   background-color: white;
   border-radius: 1rem;
@@ -30,11 +30,11 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
-
+ 
 .card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
-
+ 
 .card img {
   width: 100%;
   height: 160px;
@@ -42,19 +42,19 @@
   border-radius: 0.75rem;
   margin-bottom: 1rem;
 }
-
+ 
 .card-title {
   font-size: 1.2rem;
   font-weight: 600;
   color: #374151;
 }
-
+ 
 .card-id {
   color: #6b7280;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
-
+ 
 .status {
   display: inline-block;
   padding: 0.3rem 0.8rem;
@@ -62,17 +62,17 @@
   border-radius: 9999px;
   font-weight: bold;
 }
-
+ 
 .status-yellow {
   background-color: #fff3cd;
   color: #856404;
 }
-
+ 
 .status-green {
   background-color: #d4edda;
   color: #155724;
 }
-
+ 
 .status-red {
   background-color: #f8d7da;
   color: #721c24;

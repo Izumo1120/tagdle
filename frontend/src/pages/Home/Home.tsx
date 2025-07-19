@@ -1,30 +1,30 @@
 // const Home = () => {
-
-
+ 
+ 
 //   return (
 //     <div style={{ padding: '2rem', textAlign: 'center' }}>
 //       <h1>ホームページ</h1>
-
-      
+ 
+     
 //     </div>
 //   );
 // };
-
+ 
 // export default Home;
-
-
+ 
+ 
 // src/pages/home.tsx
 import React from "react";
 import './Home.css';
-
-
+ 
+ 
 type Item = {
   id: number;
   name: string;
   image: string;
   status: "使用中" | "空き" | "故障中";
 };
-
+ 
 const items: Item[] = [
   {
     id: 1,
@@ -69,7 +69,7 @@ const items: Item[] = [
     status: "故障中",
   },
 ];
-
+ 
 const getStatusStyle = (status: Item["status"]) => {
   switch (status) {
     case "使用中":
@@ -82,12 +82,12 @@ const getStatusStyle = (status: Item["status"]) => {
       return "bg-gray-100 text-gray-800";
   }
 };
-
+ 
 // const Home: React.FC = () => {
 //   return (
 //     <div className="min-h-screen bg-gray-50 p-6">
 //       <h1 className="text-3xl font-bold text-gray-800 mb-6">物品ダッシュボード</h1>
-
+ 
 //       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 //         {items.map((item) => (
 //           <div
@@ -114,7 +114,7 @@ const getStatusStyle = (status: Item["status"]) => {
 //     </div>
 //   );
 // };
-
+ 
 const Home: React.FC = () => {
   return (
     <div className="container">
@@ -132,5 +132,5 @@ const Home: React.FC = () => {
     </div>
   );
 };
-
+ 
 export default Home;
