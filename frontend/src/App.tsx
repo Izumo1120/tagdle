@@ -8,6 +8,8 @@ import QRModal from './components/QRmodal/QRmodal';
 import SignUp from './pages/sign_up';
 import Home from './pages/Home';
 
+import './App.css';
+
 const Layout = () => {
   const [showQR, setShowQR] = useState(false);
   const location = useLocation();
@@ -15,6 +17,7 @@ const Layout = () => {
   return (
     <div className="app">
       <Header />
+
       <main className="main-content">
         <Routes>
           <Route path="/" element={<SignUp />} />
@@ -22,12 +25,12 @@ const Layout = () => {
         </Routes>
       </main>
 
-      {/* フッターは SignUp ページ以外で表示 */}
+      {/* SignUp 以外で Footer を表示 */}
       {location.pathname !== '/' && (
         <Footer onOpenQR={() => setShowQR(true)} />
       )}
 
-      {/* QRコードモーダル */}
+      {/* QRコード読み取りモーダル */}
       {showQR && <QRModal onClose={() => setShowQR(false)} />}
     </div>
   );
