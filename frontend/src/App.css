@@ -8,9 +8,9 @@
 /* ヘッダー・フッターを除いたメインコンテンツ */
 .main-content {
   flex: 1;
-  padding: 2rem;
-  padding-top: 60px;     /* ヘッダーの高さに合わせて余白を確保 */
-  padding-bottom: 80px;  /* フッターの高さに合わせて余白を確保 */
+  /* padding: 2rem; */
+  /* padding-top: 60px;     ヘッダーの高さに合わせて余白を確保 */
+  /* padding-bottom: 80px;  フッターの高さに合わせて余白を確保 */
 }
 
 /* ロゴスタイル（任意） */

@@ -60,7 +60,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="container">
         <h1 className="title">物品管理一覧</h1>
         <div className="grid">

@@ -62,7 +62,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="signup-container">
         <form className="signup-form" onSubmit={handleSubmit}>
           <h2>新規登録</h2>
