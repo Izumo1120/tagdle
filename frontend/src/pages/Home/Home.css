@@ -4,6 +4,8 @@
   min-height: 100vh;
   background-color: #f9fafb;
   padding: 1.5rem;
+  padding-top: 25rem;/*ノートパソコンの場合*/
+  /* padding-top: 10vh;ノートパソコンの場合 */
   font-family: sans-serif;
 }
  
@@ -19,8 +21,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  max-width: 2000px;
-  margin: 0 auto;
+  max-width: 100vw;
+  /* margin: 0 auto; */
+  /* margin-top: 15rem; */
+  margin-left: -1rem;
 }
  
 .card {
@@ -57,23 +61,25 @@
  
 .status {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
+  padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
-  border-radius: 9999px;
+  border-radius: 9999px; /* 丸み */
   font-weight: bold;
+  text-align: center;
 }
- 
+
+/* 状態別バッジスタイル */
 .status-yellow {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #fff9db;
+  color: #b78103;
 }
- 
-.status-green {
-  background-color: #d4edda;
-  color: #155724;
+
+.status-blue {
+  background-color: #e0f0ff;
+  color: #2563eb;
 }
- 
+
 .status-red {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #fde8e8;
+  color: #c0262d;
 }
