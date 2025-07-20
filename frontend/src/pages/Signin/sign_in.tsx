@@ -82,6 +82,16 @@ const SignIn = () => {
             />
           </label>
           <button type="submit">ログイン</button>
+        
+          <div className=".signup-link-container">
+            <button
+              type="button"
+              className="text-sm text-blue-600 hover:underline"
+              onClick={() => navigate('/signup')} // ← react-router-dom を使用
+            >
+              アカウントをお持ちでない方はこちら（新規登録）
+            </button>
+          </div>
         </form>
       </div>
     </div>
