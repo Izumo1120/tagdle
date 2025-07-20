@@ -25,7 +25,7 @@ app.add_middleware(
 app.include_router(items_endpoint, tags=["items"])
 
 # app.include_router(auth_endpoint, tags=["auth"])
-app.include_router(return_endpoint)
+app.include_router(return_endpoint, tags=["return"])
 app.include_router(borrow_endpoint, tags=["borrow"])
 app.include_router(qr_endpoint, tags=["qr"])
 
