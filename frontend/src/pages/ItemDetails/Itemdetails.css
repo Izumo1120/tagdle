@@ -1,0 +1,110 @@
+/* ItemDetail.css */
+
+.detail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 4rem;
+  gap: 4rem;
+  flex-wrap: nowrap;
+  margin-top: 80vh;
+}
+
+.detail-container {
+  flex: 0 0 400px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.detail-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.detail-info {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 0.8rem;
+}
+
+.detail-status {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 9999px;
+}
+
+/* 状態ごとの色分け */
+.status-yellow {
+  background-color: #fff8db;
+  color: #b28100;
+}
+
+.status-blue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.status-red {
+  background-color: #fde2e2;
+  color: #c53030;
+}
+
+/* 使用履歴エリア */
+.history-container {
+  /* flex: 0 0 360px; */
+  background-color: #f8fafc;
+  padding: 2rem;
+  border-radius: 1rem;
+  width:35vw;
+  /* max-width: 80vw; */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  margin-left: auto;
+  margin-left: 15vw;
+}
+
+.history-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: #1e293b;
+  align-items:center ;
+  justify-content: center;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+}
+
+.history-item {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 1.1rem;
+}
+
+.history-purpose {
+  font-size: 1rem;
+  color: #475569;
+  margin-top: 0.4rem;
+}

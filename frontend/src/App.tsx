@@ -8,6 +8,7 @@ import QRModal from './components/QRmodal/QRmodal';
 import Signin from './pages/Signin/sign_in';
 import Generate from './pages/Generate/generate';
 import SignUp from './pages/Signup/sign_up';
+import ItemDetails from './pages/ItemDetails/Itemdetails';
 
 
 import Home from './pages/Home/Home';
@@ -29,6 +30,7 @@ const Layout = () => {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/generate" element={<Generate />} />
+          <Route path="/item/:id" element={<ItemDetails />} />
         </Routes>
       </main>
 
