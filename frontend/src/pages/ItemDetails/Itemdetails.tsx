@@ -5,6 +5,8 @@ import Header from "../../components/Header/Header";
 import "./Itemdetails.css";
 import { QRCodeCanvas } from "qrcode.react";
 import jsPDF from "jspdf";
+import { useNavigate } from "react-router-dom";
+
 
 type Item = {
   id: number;
@@ -16,7 +18,11 @@ type Item = {
 
 const ItemDetail: React.FC = () => {
   const { id } = useParams();
-  const [item, setItem] = useState<Item | null>(null);
+  const location = useLocation();
+  const state = location.state as { item?: Item };
+  const item = state?.item;
+  const navigate = useNavigate();
+
   const qrRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -145,6 +151,21 @@ const ItemDetail: React.FC = () => {
           <button onClick={() => downloadPdfWithSize(80)}>中（80mm）PDF</button>
           <button onClick={() => downloadPdfWithSize(120)}>大（120mm）PDF</button>
         </div>
+
+        <button
+          style={{
+            marginTop: "2rem",
+            padding: "0.5rem 1rem",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+          onClick={() => navigate("/")}
+        >
+          ホーム画面に戻る
+        </button>
       </div>
     </>
   );
