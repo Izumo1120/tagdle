@@ -1,5 +1,5 @@
-// src/components/AddItemModal.tsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ← 追加
 import './Manageitems.css';
 
 type Props = {
@@ -7,13 +7,14 @@ type Props = {
 };
 
 const ManageItemModal = ({ onClose }: Props) => {
+  const navigate = useNavigate(); // ← 追加
+
   const [formData, setFormData] = useState({
     name: '',
     category_id: 1,
     identifier: '',
     image_id: 1,
     location_id: 1,
-    // status: 0,
     created_at: new Date().toISOString().split('T')[0],
   });
 
@@ -37,6 +38,8 @@ const ManageItemModal = ({ onClose }: Props) => {
         alert('物品が追加されました');
         console.log(data);
         onClose();
+        navigate('/'); // ← ホームに遷移
+        window.location.reload(); 
       } else {
         alert('追加に失敗しました: ' + data.error);
       }
@@ -57,13 +60,6 @@ const ManageItemModal = ({ onClose }: Props) => {
           <div><label>識別子:</label><input name="identifier" value={formData.identifier} onChange={handleChange} required /></div>
           <div><label>画像ID:</label><input name="image_id" type="number" value={formData.image_id} onChange={handleChange} required /></div>
           <div><label>場所ID:</label><input name="location_id" type="number" value={formData.location_id} onChange={handleChange} required /></div>
-          <div>
-            {/* <label>状態:</label>
-            <select name="status" value={formData.status} onChange={handleChange}>
-              <option value={0}>空き</option>
-              <option value={1}>使用中</option>
-            </select> */}
-          </div>
           <div><label>登録日:</label><input name="created_at" type="date" value={formData.created_at} onChange={handleChange} required /></div>
           <button type="submit">追加</button>
         </form>
