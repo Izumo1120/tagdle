@@ -16,7 +16,7 @@ class ItemCreate(BaseModel):
     identifier: str
     image_id: int
     location_id: int
-    status: bool
+    # status: bool
     created_at: date
 
 class ItemResponse(BaseModel):
@@ -98,7 +98,7 @@ def add_item(data: ItemCreate):
         identifier = data.identifier
         image_id = data.image_id
         location_id = data.location_id
-        status = data.status
+        # status = data.status
         created_at = data.created_at
         
 
@@ -145,3 +145,19 @@ def add_item(data: ItemCreate):
     except Exception as e:
         return {"error": str(e)}, 500
 
+@items_endpoint.delete("/items/{item_id}", tags=["items"])
+def delete_item_by_id(item_id: int):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("DELETE FROM Items WHERE id = %s", (item_id,))
+        connection.commit()
+        return JSONResponse(content={
+            "message": "削除処理が完了しました。"
+            })
+    except Error as e:
+        return {"error": str(e)}
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
