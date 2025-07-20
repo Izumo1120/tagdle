@@ -163,6 +163,13 @@ html, body {
   transform: translateY(-1px);
 }
 
+.signup-link-container {
+  margin-top: 1.5rem;
+  text-align: center;
+  z-index: 10;
+}
+
+
 /* ======= モバイル対応 ======= */
 @media (max-width: 480px) {
   .signin-form {

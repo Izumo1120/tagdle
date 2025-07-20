@@ -1,9 +1,11 @@
 // src/pages/Register.tsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // 追加
 import Header from '../../components/Header/Header';
 import './sign_up.css';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
     studentId: '',
@@ -111,6 +113,15 @@ const SignUp = () => {
           </label>
 
           <button type="submit" className="signup-button">登録</button>
+
+          <button
+            type="button"
+            className="login-redirect-button"
+            onClick={() => navigate('/signin')}
+            style={{ marginTop: '1rem' }}
+          >
+            ログイン画面へ
+          </button>
         </form>
       </div>
     </>
