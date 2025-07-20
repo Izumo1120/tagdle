@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import QrScannerComponent from '../../components/QRscanner';
 import './QRModal.css';
+import { useNavigate } from 'react-router-dom'; // ← 追加
 
 type Props = {
   onClose: () => void;
@@ -17,6 +18,8 @@ const loggedInUserId = 1;
 
 const QRModal = ({ onClose }: Props) => {
   const [items, setItems] = useState<Item[]>([]);
+  const navigate = useNavigate(); // ← 追加
+
 
   // 起動時に全物品一覧を取得
   useEffect(() => {
@@ -68,6 +71,10 @@ const QRModal = ({ onClose }: Props) => {
 
           const borrowResult = await res.json();
           alert(borrowResult.message || "貸出完了");
+          onClose();
+          navigate("/");
+          window.location.reload();
+
         }
       } else if (result.status === 2) {
         const confirm = window.confirm(`${result.name} を返却しますか？`);
@@ -78,17 +85,29 @@ const QRModal = ({ onClose }: Props) => {
 
           const returnResult = await res.json();
           alert(returnResult.message || "返却完了");
+          onClose();
+          navigate("/");
+          window.location.reload();
         }
       } else if (result.status === 0) {
         alert(`${result.name} は現在他のユーザーが使用中です。`);
+        onClose();
+        navigate("/");
+        window.location.reload();
       } else {
         alert("不明な応答を受け取りました。");
+        onClose();
+        navigate("/");
+        window.location.reload();
       }
 
       onClose();
     } catch (error) {
       console.error("QR送信エラー:", error);
       alert("QRコードの送信に失敗しました。");
+      onClose();
+      navigate("/");
+      window.location.reload();
     }
   };
 
