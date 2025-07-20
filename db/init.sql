@@ -39,9 +39,9 @@ CREATE TABLE Items (
     status BOOLEAN DEFAULT FALSE,
     qrpath VARCHAR(255),
     created_at DATE,
-    FOREIGN KEY (category_id) REFERENCES Categories(id),
-    FOREIGN KEY (image_id) REFERENCES Images(id),
-    FOREIGN KEY (location_id) REFERENCES Locations(id)
+    FOREIGN KEY (category_id) REFERENCES Categories(id) ,
+    FOREIGN KEY (image_id) REFERENCES Images(id) ,
+    FOREIGN KEY (location_id) REFERENCES Locations(id) 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Histories table
@@ -51,8 +51,8 @@ CREATE TABLE Histories (
     user_id INT,
     borrow_date DATE,
     return_date DATE DEFAULT NULL,
-    FOREIGN KEY (item_id) REFERENCES Items(id),
-    FOREIGN KEY (user_id) REFERENCES Users(id)
+    FOREIGN KEY (item_id) REFERENCES Items(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Users table
