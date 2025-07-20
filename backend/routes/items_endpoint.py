@@ -15,7 +15,7 @@ class ItemCreate(BaseModel):
     identifier: str
     image_id: int
     location_id: int
-    status: bool
+    # status: bool
     created_at: date
 
 class ItemResponse(BaseModel):
@@ -57,7 +57,7 @@ def add_item(data: ItemCreate):
         identifier = data.identifier
         image_id = data.image_id
         location_id = data.location_id
-        status = data.status
+        # status = data.status
         created_at = data.created_at
         
 
@@ -78,10 +78,10 @@ def add_item(data: ItemCreate):
         try:
             with connection.cursor() as cursor:
                 query = """
-                INSERT INTO Items (name, category_id, identifier, image_id, location_id, status, created_at) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO Items (name, category_id, identifier, image_id, location_id, created_at) 
+                VALUES (%s, %s, %s, %s, %s, %s)
                 """
-                cursor.execute(query, (name, category_id, identifier, image_id, location_id, status, created_at))
+                cursor.execute(query, (name, category_id, identifier, image_id, location_id, created_at))
             connection.commit()
 
             # 新しく追加されたタスクのIDを取得
@@ -92,7 +92,7 @@ def add_item(data: ItemCreate):
             return {
                 "success": True, 
                 "message": "Item added successfully",
-                "task_id": item_id
+                "item_id": item_id
             }, 201
 
         except Exception as e:
