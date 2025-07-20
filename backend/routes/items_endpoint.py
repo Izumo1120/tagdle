@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Query
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -6,6 +6,7 @@ from typing import List
 from datetime import date
 import mysql.connector as mydb
 from mysql.connector import Error
+from typing import Union
 
 from models.database import get_db_connection
 
@@ -41,6 +42,46 @@ def get_items():
         json_items = jsonable_encoder(items)
         return JSONResponse(content=json_items, media_type="application/json; charset=utf-8")
         # return items
+    except Error as e:
+        return {"error": str(e)}
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+@items_endpoint.get("/items/{item_id}", response_model=ItemResponse, tags=["items"])
+def get_item_by_id(item_id: int):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Items WHERE id = %s", (item_id,))
+        item = cursor.fetchone()
+        json_item = jsonable_encoder(item)
+        return JSONResponse(content=json_item, media_type="application/json; charset=utf-8")
+        # return items
+    except Error as e:
+        return {"error": str(e)}
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+@items_endpoint.get("/search", response_model=List[ItemResponse], tags=["items"])
+async def search_items(name: Union[str, None] = Query(None, description="検索する名前")):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if name:
+            query = "SELECT * FROM Items WHERE name LIKE %s"
+            cursor.execute(query, (f"%{name}%",))
+        else:
+            query = "SELECT * FROM Items"
+            cursor.execute(query)
+
+        items = cursor.fetchall()
+        return JSONResponse(content=jsonable_encoder(items), media_type="application/json; charset=utf-8")
+
     except Error as e:
         return {"error": str(e)}
     finally:
@@ -104,3 +145,19 @@ def add_item(data: ItemCreate):
     except Exception as e:
         return {"error": str(e)}, 500
 
+@items_endpoint.delete("/items/{item_id}", tags=["items"])
+def delete_item_by_id(item_id: int):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("DELETE FROM Items WHERE id = %s", (item_id,))
+        connection.commit()
+        return JSONResponse(content={
+            "message": "削除処理が完了しました。"
+            })
+    except Error as e:
+        return {"error": str(e)}
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
