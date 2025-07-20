@@ -1,11 +1,18 @@
+:root {
+  --header-height: 5rem; 
+}
+
 /* Header.css - 鮮やかなヘッダーデザイン */
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 80px;
+  /* position: static; */
+  /* position: fixed; */
+  /* top: 0;
+  left: 0; */
+  /* width: 100vw; */
+  width: 100%;
+  /* height: 80px; */
+  height: var(--header-height);
   background: linear-gradient(135deg, #00d2ff, #0099ff, #3a7bd5, #74b9ff);
   background-size: 300% 300%;
   animation: headerGradientShift 6s ease infinite;
@@ -19,6 +26,17 @@
   backdrop-filter: blur(10px);
   /* position: relative; */
   overflow: hidden;
+}
+
+.header--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.header--static {
+  position: static;
 }
 
 /* ヘッダーの輝く効果 */
@@ -110,6 +128,41 @@
 }
 
 .logout-button:active {
+  transform: translateY(-50%) translateY(0px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 鮮やかなログアウトボタン */
+.homeback-button {
+  position: absolute;
+  right:  16rem; /* 右の余白を減らす */
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
+  color: #0099ff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 0.6rem 1.2rem; /* パディングを調整 */
+  font-weight: 700;
+  font-size: 0.85rem; /* フォントサイズを少し小さく */
+  border-radius: 20px; /* 角丸を少し小さく */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  letter-spacing: 0.3px;
+  z-index: 2;
+  white-space: nowrap; /* テキストの折り返しを防ぐ */
+}
+
+.homeback-button:hover {
+  background: rgba(255, 255, 255, 1); /* ホバー時は完全に不透明に */
+  color: #0080cc;
+  transform: translateY(-50%) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 153, 255, 0.4);
+}
+
+.homeback-button:active {
   transform: translateY(-50%) translateY(0px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

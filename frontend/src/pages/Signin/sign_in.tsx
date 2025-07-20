@@ -52,9 +52,9 @@ const SignIn = () => {
   return (
     <div className="signin-page">
       {/* ヘッダーを固定位置で画面幅いっぱいに表示 */}
-      <div className="header-container">
+      {/* <div className="header-container">
         <Header />
-      </div>
+      </div> */}
       
       <div className="signin-container">
         <form className="signin-form" onSubmit={handleSubmit}>
@@ -82,8 +82,15 @@ const SignIn = () => {
             />
           </label>
           <button type="submit">ログイン</button>
+          <button
+              type="button"
+              // className="text-sm text-blue-600 hover:underline"
+              onClick={() => navigate('/signup')} // ← react-router-dom を使用
+            >
+              新規登録（アカウントをお持ちでない方）
+            </button>
         
-          <div className=".signup-link-container">
+          {/* <div className=".signup-link-container">
             <button
               type="button"
               className="text-sm text-blue-600 hover:underline"
@@ -91,7 +98,7 @@ const SignIn = () => {
             >
               アカウントをお持ちでない方はこちら（新規登録）
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

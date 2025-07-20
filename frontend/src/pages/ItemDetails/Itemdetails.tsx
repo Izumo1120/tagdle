@@ -1,11 +1,11 @@
 // src/pages/ItemDetail.tsx
 import React, { useEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./Itemdetails.css";
 import { QRCodeCanvas } from "qrcode.react";
 import jsPDF from "jspdf";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 type Item = {
@@ -23,7 +23,7 @@ const ItemDetail: React.FC = () => {
   const [item, setItem] = useState<Item | null>(null);
 
   const location = useLocation();
-  const state = location.state as { item?: Item };
+  // const state = location.state as { item?: Item };
  
 
   const qrRef = useRef<HTMLCanvasElement>(null);
@@ -134,83 +134,104 @@ const ItemDetail: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="detail-wrapper" style={{ marginTop: "3rem" }}>
-        <div className="detail-container">
-          <h1 className="detail-title">{item.name}</h1>
-          <img src={item.image} alt={item.name} className="detail-image" />
-          <p className="detail-info"><strong>ID:</strong> {item.id}</p>
-          <p className="detail-info"><strong>管理番号:</strong> {item.identifier}</p>
-          <p className="detail-info">
-            <strong>状態:</strong>{" "}
-            <span className={`detail-status ${getStatusClass(item.status)}`}>
-              {item.status}
-            </span>
-          </p>
+      <main className="item-detail-page">
+        <div className="detail-wrapper" style={{ marginTop: "3rem" }}>
+          <div className="detail-container">
+            <h1 className="detail-title">{item.name}</h1>
+            <img src={item.image} alt={item.name} className="detail-image" />
+            <p className="detail-info"><strong>ID:</strong> {item.id}</p>
+            <p className="detail-info"><strong>管理番号:</strong> {item.identifier}</p>
+            <p className="detail-info">
+              <strong>状態:</strong>{" "}
+              <span className={`detail-status ${getStatusClass(item.status)}`}>
+                {item.status}
+              </span>
+            </p>
+          </div>
+
+          <div className="history-container">
+            <h2 className="history-title">使用履歴</h2>
+            <ul className="history-list">
+              {history.map((record, index) => (
+                <li key={index} className="history-item">
+                  <p><strong>{record.date}</strong> - {record.user}</p>
+                  <p className="history-purpose">用途: {record.purpose}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div className="history-container">
-          <h2 className="history-title">使用履歴</h2>
-          <ul className="history-list">
-            {history.map((record, index) => (
-              <li key={index} className="history-item">
-                <p><strong>{record.date}</strong> - {record.user}</p>
-                <p className="history-purpose">用途: {record.purpose}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+        {/* QRコードセクション
+        <div
+          style={{
+            marginTop: "3rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <QRCodeCanvas value={qrUrl} size={256} includeMargin={true} ref={qrRef} />
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <button onClick={() => downloadPdfWithSize(50)}>小（50mm）PDF</button>
+            <button onClick={() => downloadPdfWithSize(80)}>中（80mm）PDF</button>
+            <button onClick={() => downloadPdfWithSize(120)}>大（120mm）PDF</button>
+          </div>
+        </div> */}
+      
 
-      {/* QRコードセクション */}
-      <div
-        style={{
-          marginTop: "3rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
-        <QRCodeCanvas value={qrUrl} size={256} includeMargin={true} ref={qrRef} />
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <button onClick={() => downloadPdfWithSize(50)}>小（50mm）PDF</button>
-          <button onClick={() => downloadPdfWithSize(80)}>中（80mm）PDF</button>
-          <button onClick={() => downloadPdfWithSize(120)}>大（120mm）PDF</button>
-        </div>
+        {/* QRコードセクション */}
+        <div
+          style={{
+            marginTop: "3rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <QRCodeCanvas value={qrUrl} size={256} includeMargin={true} ref={qrRef} />
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <button onClick={() => downloadPdfWithSize(50)}>小（50mm）PDF</button>
+            <button onClick={() => downloadPdfWithSize(80)}>中（80mm）PDF</button>
+            <button onClick={() => downloadPdfWithSize(120)}>大（120mm）PDF</button>
+          </div>
 
 
-        {/* 削除ボタン */}
-        <div style={{ marginTop: "2rem" }}>
-          <button
-            onClick={()=>handleDelete(item.id)}
+          {/* 削除ボタン */}
+          <div style={{ marginTop: "2rem" }}>
+            <button
+              onClick={()=>handleDelete(item.id)}
+              style={{
+                backgroundColor: "red",
+                color: "white",
+                padding: "0.5rem 1rem",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              🗑 物品を削除
+            </button>
+          </div>
+          {/* <button
             style={{
-              backgroundColor: "red",
-              color: "white",
+              marginTop: "2rem",
               padding: "0.5rem 1rem",
+              backgroundColor: "#007bff",
+              color: "white",
               border: "none",
-              borderRadius: "5px",
+              borderRadius: "4px",
               cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
-            🗑 物品を削除
-          </button>
-        </div>
-        <button
-          style={{
-            marginTop: "2rem",
-            padding: "0.5rem 1rem",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-          onClick={() => navigate("/")}
-        >
-          ホーム画面に戻る
-        </button>
+            物品管理一覧に戻る
+          </button> */}
 
-      </div>
+        </div>
+      </main>
     </>
   );
 };

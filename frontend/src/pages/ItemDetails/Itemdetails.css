@@ -2,16 +2,20 @@
 
 .detail-wrapper {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   align-items: flex-start;
   padding: 2rem 4rem;
   gap: 4rem;
-  flex-wrap: nowrap;
-  margin-top: 80vh;
+  /* flex-wrap: nowrap; */
+  flex-wrap: wrap;
+  /* margin-top: 80vh; */
+  padding-top: var(--header-height);
 }
 
 .detail-container {
   flex: 0 0 400px;
+  min-width: 320px;
   background-color: #ffffff;
   padding: 1.5rem;
   border-radius: 1rem;
@@ -70,14 +74,16 @@
 /* 使用履歴エリア */
 .history-container {
   /* flex: 0 0 360px; */
+  flex: 1;
   background-color: #f8fafc;
   padding: 2rem;
   border-radius: 1rem;
-  width:35vw;
+  /* width:35vw; */
   /* max-width: 80vw; */
+  max-width: 600px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  margin-left: auto;
-  margin-left: 15vw;
+  /* margin-left: auto;
+  margin-left: 15vw; */
 }
 
 .history-title {
@@ -107,4 +113,8 @@
   font-size: 1rem;
   color: #475569;
   margin-top: 0.4rem;
+}
+
+.item-detail-page {
+  padding-bottom: 100px; /* ページ下部に80pxの余白を追加 */
 }
